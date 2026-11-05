@@ -1,0 +1,19 @@
+{
+  "nama": "Fellisa Anastasya",
+  "nim": "2428240094",
+  "topik": 26,
+  "endpoints": [
+    "GET /ternak",
+    "GET /ternak/:ras",
+    "POST /ternak",
+    "PUT /ternak/:ras",
+    "DELETE /ternak/:ras",
+    "GET /ternak?status=dirawat",
+    "GET /ras",
+    "POST /ras",
+    "POST /beratkg",
+    "POST /status",
+    "POST /asal",
+    "GET /merek/:asalDaerah/ternak"
+  ]
+}

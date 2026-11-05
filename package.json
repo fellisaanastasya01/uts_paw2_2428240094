@@ -1,0 +1,28 @@
+{
+  "name": "tugas1-restful-2428240094",
+  "version": "1.0.0",
+  "description": "uts - RESTful API Express.js + MongoDB (Topik 26: Peternakan, SI5B)",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "seed": "node data/seed.js",
+    "uji": "node tools/uji.js 03-filtering"
+  },
+  "keywords": [
+    "express",
+    "restful-api",
+    "mongodb",
+    "mongoose",
+    "uts"
+  ],
+  "author": "2428240094",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mongoose": "^8.24.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
