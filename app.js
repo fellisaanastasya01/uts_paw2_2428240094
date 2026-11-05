@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const { connectDB } = require('./db');
 const Ras = require('./models/ras');
 const Ternak = require('./models/ternak');
+const ras = require('./models/ras');
+const ternak = require('./models/ternak');
 const app = express();
 
 // Middleware untuk membaca JSON dari body request
@@ -71,7 +73,7 @@ app.post('/ras', asyncHandler(async (req, res) => {
             data: null
         });
     }
-    const baru = await Merek.create({ nama, asalDaerah });
+    const baru = await ras.create({ nama, asalDaerah });
     res.status(201).json({ status: 'success', message: 'Data ras berhasil ditambahkan', data: baru });
 }));
 
@@ -209,7 +211,7 @@ app.put('/smartphones/:id', asyncHandler(async (req, res) => {
         req.params.id,
         { merek, model, ramGb, penyimpananGb, harga, spesifikasi },
         { new: true, runValidators: true, overwriteDiscriminatorKey: false }
-    ).populate('merek', 'nama negaraAsal');
+    ).populate('ras', 'asalDaerah');
 
     if (!data) {
         return res.status(404).json({
@@ -222,11 +224,11 @@ app.put('/smartphones/:id', asyncHandler(async (req, res) => {
 }));
 
 // DELETE /smartphones/:id -> hapus dokumen
-app.delete('/smartphones/:id', asyncHandler(async (req, res) => {
+app.delete('/ternak/:id', asyncHandler(async (req, res) => {
     if (!adalahIdValid(req.params.id)) {
         return res.status(400).json({ status: 'error', message: `id ${req.params.id} tidak valid`, data: null });
     }
-    const data = await Smartphone.findByIdAndDelete(req.params.id);
+    const data = await ternak.findByIdAndDelete(req.params.id);
     if (!data) {
         return res.status(404).json({
             status: 'error',
@@ -236,7 +238,7 @@ app.delete('/smartphones/:id', asyncHandler(async (req, res) => {
     }
     res.status(200).json({
         status: 'success',
-        message: `Data smartphone dengan id ${data._id} berhasil dihapus`,
+        message: `Data ternak dengan id ${data._id} berhasil dihapus`,
         data: null
     });
 }));
