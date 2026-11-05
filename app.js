@@ -2,8 +2,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const { connectDB } = require('./db');
-const Merek = require('./models/Merek');
-const Smartphone = require('./models/Smartphone');
+const Ras = require('./models/ras');
+const Ternak = require('./models/ternak');
 const app = express();
 
 // Middleware untuk membaca JSON dari body request
@@ -50,7 +50,7 @@ app.get('/', asyncHandler(async (req, res) => {
     res.status(200).json(info);
 }));
 
-// GET /merek -> semua merek (sorting + pagination + projection)
+// GET 
 app.get('/merek', asyncHandler(async (req, res) => {
     const { sort, fields, page = 1, limit = 10 } = req.query;
     const urut = sort ? Object.fromEntries(sort.split(',').map((k) => [k.trim(), 1])) : { nama: 1 };
@@ -61,22 +61,22 @@ app.get('/merek', asyncHandler(async (req, res) => {
     res.status(200).json({ total, page: Number(page), limit: Number(limit), data });
 }));
 
-// POST /merek -> tambah merek baru
-app.post('/merek', asyncHandler(async (req, res) => {
-    const { nama, negaraAsal } = req.body;
-    if (!nama || !negaraAsal) {
+// POST
+app.post('/ras', asyncHandler(async (req, res) => {
+    const { nama, asalDaerah } = req.body;
+    if (!nama || !asalDaerah) {
         return res.status(400).json({
             status: 'error',
-            message: 'Field nama dan negaraAsal wajib diisi',
+            message: 'Field nama dan asalDaerah wajib diisi',
             data: null
         });
     }
-    const baru = await Merek.create({ nama, negaraAsal });
-    res.status(201).json({ status: 'success', message: 'Data merek berhasil ditambahkan', data: baru });
+    const baru = await Merek.create({ nama, asalDaerah });
+    res.status(201).json({ status: 'success', message: 'Data ras berhasil ditambahkan', data: baru });
 }));
 
-// GET /merek/:id/smartphone -> referencing: ambil merek, lalu smartphone miliknya
-app.get('/merek/:id/smartphone', asyncHandler(async (req, res) => {
+// GET
+app.get('/ras/:id/ternak', asyncHandler(async (req, res) => {
     if (!adalahIdValid(req.params.id)) {
         return res.status(400).json({ status: 'error', message: 'id merek tidak valid', data: null });
     }

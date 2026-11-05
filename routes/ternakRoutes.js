@@ -1,10 +1,6 @@
-// routes/smartphoneRoutes.js
-// Route: memetakan alamat ke fungsi Controller.
-// GET tanpa API key; POST/PUT/DELETE dilindungi cekApiKey.
-
 const express = require("express");
 const router = express.Router();
-const c = require("../controllers/smartphoneController");
+const c = require("../controllers/ternakController");
 const cekApiKey = require("../middlewares/cekApiKey");
 
 router.get("/", c.kirimDaftar);

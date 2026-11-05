@@ -1,14 +1,9 @@
-// models/smartphoneModel.js
-// Model: menyimpan data dan fungsi pengolahannya.
-// TIDAK memakai req maupun res — murni logika data.
-
 const dataAwal = [
-  { id: 1, merek: "Xiaomi",  model: "Redmi Note 14", ramGb: 8, penyimpananGb: 256, harga: 3299000 },
-  { id: 2, merek: "Samsung", model: "Galaxy A54", ramGb: 8, penyimpananGb: 256, harga: 5999000 },
-    { id: 3, merek: "Apple", model: "iPhone 13", ramGb: 4, penyimpananGb: 128, harga: 9999000 },
-    { id: 4, merek: "Infinix", model: "Note 40 Pro", ramGb: 8, penyimpananGb: 130, harga: 3999000 }
+  { nama: 'Austria', asalDaerah: 'Australia' },
+    { nama: 'Japanese', asalDaerah: 'Japan' },
+    { nama: 'Chinese', asalDaerah: 'China' },
 ];
-let nextId = 5; 
+let nextId = 4; 
 
 function getAll() {
   return dataAwal;
@@ -18,10 +13,10 @@ function getById(id) {
   return dataAwal.find((d) => d.id === id) || null;
 }
 
-function filterByMerek(merek) {
-  if (!merek) return [...dataAwal];
-  const kata = merek.toLowerCase();
-  return dataAwal.filter((d) => d.merek.toLowerCase().includes(kata));
+function filterByRas(ras) {
+  if (!ras) return [...dataAwal];
+  const kata = ras.toLowerCase();
+  return dataAwal.filter((d) => d.ras.toLowerCase().includes(kata));
 }
 
 function buat(data) {
@@ -43,4 +38,4 @@ function hapus(id) {
   return dataAwal.splice(idx, 1)[0];
 }
 
-module.exports = { getAll, getById, filterByMerek, buat, perbarui, hapus };
+module.exports = { getAll, getById, filterByRas, buat, perbarui, hapus };
