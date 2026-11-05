@@ -50,7 +50,7 @@ async function main() {
     }));
     const ternakTersimpan = await ternak.insertMany(dokumen);
 
-    console.log(`[SEED] ${rasTersimpan.length} ras, ${smartphoneTersimpan.length} smartphone`);
+    console.log(`[SEED] ${rasTersimpan.length} ras, ${ternakTersimpan.length} smartphone`);
     await mongoose.disconnect();
 }
 

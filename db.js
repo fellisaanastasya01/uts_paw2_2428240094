@@ -2,7 +2,7 @@
 // URI diambil dari environment agar bisa dipindah ke MongoDB Atlas tanpa mengubah kode.
 const mongoose = require('mongoose');
 
-const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/toko_gadget';
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/ternak';
 
 async function connectDB() {
     await mongoose.connect(MONGO_URI);
