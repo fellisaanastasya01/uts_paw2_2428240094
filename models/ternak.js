@@ -1,16 +1,16 @@
 const mongoose = require('mongoose');
 
 const rasSchema = new mongoose.Schema(
-    { nama: 'Austria', asalDaerah: 'Australia' },
-    { nama: 'Japanese', asalDaerah: 'Japan' },
-    { nama: 'Chinese', asalDaerah: 'China' },
+    { ras: 'Austria', asalDaerah: 'Australia' },
+    { ras: 'Japanese', asalDaerah: 'Japan' },
+    { ras: 'Chinese', asalDaerah: 'China' },
     { _id: false }
 );
 
 const ternakSchema = new mongoose.Schema(
-    { nama: 'Austria', asalDaerah: 'Australia' },
-    { nama: 'Japanese', asalDaerah: 'Japan' },
-    { nama: 'Chinese', asalDaerah: 'China' },
+    { ras: 'Austria', asalDaerah: 'Australia' },
+    { ras: 'Japanese', asalDaerah: 'Japan' },
+    { ras: 'Chinese', asalDaerah: 'China' },
     { timestamps: true, versionKey: false }
 );
 
