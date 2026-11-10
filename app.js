@@ -1,8 +1,9 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const { connectDB } = require('./db');
-const Ras = require('./models/ras');
-const Ternak = require('./models/ternak');
+const logger = require('./middlewares/logger');
+const { errorHandler, notFound } = require('./middlewares/errorHandler');
+const rasRoutes = require('./routes/rasRoutes');
+const ternakRoutes = require('./routes/ternakRoutes');
 
 const app = express();
 app.use(express.json());
@@ -40,6 +41,7 @@ function kirimError(res, err) {
 }
 
 const idValid = (id) => mongoose.isValidObjectId(id);
+app.use(logger);
 
 // GET / -> info API
 app.get('/', (req, res) => res.status(200).json(require('./data/info.json')));
@@ -194,7 +196,13 @@ app.use((req, res) => {
 
 // Error handler terakhir
 app.use((err, req, res, next) => kirimError(res, err));
+// Kumpulan rute
+app.use('/ras', rasRoutes);
+app.use('/ternak', ternakRoutes);
 
+// 404 rute tidak dikenal + error handler terakhir
+app.use(notFound);
+app.use(errorHandler);
 const PORT = process.env.PORT || 3000;
 if (require.main === module) {
     connectDB()

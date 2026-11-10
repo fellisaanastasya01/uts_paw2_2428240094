@@ -1,3 +1,5 @@
+// models/ternakModels.js
+// Model utama: Ternak. kandang di-embed, ras direferensikan.
 const mongoose = require('mongoose');
 
 const kandangSchema = new mongoose.Schema(
@@ -10,25 +12,13 @@ const kandangSchema = new mongoose.Schema(
 
 const ternakSchema = new mongoose.Schema(
     {
-        kodeTernak: {
-            type: String,
-            required: [true, 'kodeTernak wajib diisi'],
-            unique: true,
-            trim: true
-        },
+        kodeTernak: { type: String, required: [true, 'kodeTernak wajib diisi'], unique: true, trim: true },
         nama: { type: String, required: [true, 'nama wajib diisi'], trim: true },
-        beratKG: {
-            type: Number,
-            required: [true, 'beratKG wajib diisi'],
-            min: [1, 'beratKG minimal 1 kg']
-        },
+        beratKG: { type: Number, required: [true, 'beratKG wajib diisi'], min: [1, 'beratKG minimal 1 kg'] },
         status: {
             type: String,
             required: [true, 'status wajib diisi'],
-            enum: {
-                values: ['sehat', 'dirawat', 'sakit'],
-                message: 'status harus salah satu dari: sehat, dirawat, sakit'
-            },
+            enum: { values: ['sehat', 'dirawat', 'sakit'], message: 'status harus salah satu dari: sehat, dirawat, sakit' },
             default: 'sehat'
         },
         kandang: { type: kandangSchema, required: [true, 'kandang wajib diisi'] },
