@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { connectDB } = require('../db');
 const ras = require('../models/Ras');
-const ternak = require('../models/Ternak');
+const ternak = require('../models/ternak');
 
 const  ras= [
     { nama: 'Austria', asalDaerah: 'Australia' },

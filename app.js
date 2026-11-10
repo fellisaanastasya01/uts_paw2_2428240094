@@ -2,9 +2,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const { connectDB } = require('./db');
-const Ras = require('./models/ras');
+const Ras = require('./models/Ras');
 const Ternak = require('./models/ternak');
-const ras = require('./models/ras');
+const ras = require('./models/Ras');
 const ternak = require('./models/ternak');
 const app = express();
 

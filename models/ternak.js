@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const spesifikasiSchema = new mongoose.Schema(
+const rasSchema = new mongoose.Schema(
     { nama: 'Austria', asalDaerah: 'Australia' },
     { nama: 'Japanese', asalDaerah: 'Japan' },
     { nama: 'Chinese', asalDaerah: 'China' },
