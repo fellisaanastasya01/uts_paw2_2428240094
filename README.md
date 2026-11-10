@@ -42,10 +42,17 @@ Status error: `400` validasi / id tidak valid, `404` data atau rute tidak ditemu
 ## Struktur
 
 ```
-app.js              # route + validasi + error handler
-db.js               # koneksi Mongoose
-models/ras.js       # skema Ras (model pendukung)
-models/ternak.js    # skema Ternak (model utama, embed kandang + ref ras)
-data/seed.js        # data uji (NIM pada kodeTernak)
-data/info.json      # metadata API untuk GET /
+app.js                      # memasang middleware + router, start server
+db.js                       # koneksi Mongoose
+routes/rasRoutes.js         # router /ras
+routes/ternakRoutes.js      # router /ternak
+controllers/rasControllers.js    # logika request Ras
+controllers/ternakControllers.js # logika request Ternak
+models/rasModels.js         # skema Ras (model pendukung, referencing)
+models/ternakModels.js      # skema Ternak (model utama, embed kandang + ref ras)
+middlewares/logger.js       # log setiap request ke terminal
+middlewares/cekApiKey.js    # proteksi POST/PUT/DELETE via x-api-key (aktif bila API_KEY di .env)
+middlewares/errorHandler.js # asyncHandler, error handler terpusat, 404
+data/seed.js                # data uji (NIM pada kodeTernak)
+data/info.json              # metadata API untuk GET /
 ```

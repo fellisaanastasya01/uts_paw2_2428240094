@@ -1,8 +1,8 @@
 // Seed data uji: 3 ras + 5 ternak (NIM 2428240094 dipakai pada nilai unik kodeTernak)
 const mongoose = require('mongoose');
 const { connectDB } = require('../db');
-const Ras = require('../models/ras');
-const Ternak = require('../models/ternak');
+const Ras = require('../models/rasModels');
+const Ternak = require('../models/ternakModels');
 
 const rasAwal = [
     { nama: 'Austria', asalDaerah: 'Australia' },
@@ -21,13 +21,10 @@ const ternakAwal = [
 async function main() {
     await connectDB();
     await Promise.all([Ras.deleteMany({}), Ternak.deleteMany({})]);
-
     const rasTersimpan = await Ras.insertMany(rasAwal);
     const idRas = new Map(rasTersimpan.map((r) => [r.nama, r._id]));
-
     const dokumen = ternakAwal.map(({ ras, ...sisa }) => ({ ...sisa, ras: idRas.get(ras) }));
     const ternakTersimpan = await Ternak.insertMany(dokumen);
-
     console.log(`[SEED] ${rasTersimpan.length} ras, ${ternakTersimpan.length} ternak`);
     await mongoose.disconnect();
 }
