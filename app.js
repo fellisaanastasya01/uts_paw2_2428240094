@@ -1,5 +1,3 @@
-// RESTful API UTS PAW II - Topik 26: Peternakan
-// Model utama: Ternak (/ternak) | Model pendukung: Ras (/ras)
 const express = require('express');
 const mongoose = require('mongoose');
 const { connectDB } = require('./db');
@@ -9,7 +7,6 @@ const Ternak = require('./models/ternak');
 const app = express();
 app.use(express.json());
 
-// Logger sederhana: setiap request tampil di terminal
 app.use((req, res, next) => {
     console.log(`[LOG] ${req.method} ${req.originalUrl}`);
     next();
@@ -17,7 +14,6 @@ app.use((req, res, next) => {
 
 const asyncHandler = (fn) => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next);
 
-// Mongoose error -> respons JSON konsisten
 function kirimError(res, err) {
     if (err instanceof mongoose.Error.ValidationError) {
         return res.status(400).json({
@@ -48,7 +44,6 @@ const idValid = (id) => mongoose.isValidObjectId(id);
 // GET / -> info API
 app.get('/', (req, res) => res.status(200).json(require('./data/info.json')));
 
-// ---------------- Ras (model pendukung / referencing) ----------------
 app.get('/ras', asyncHandler(async (req, res) => {
     const data = await Ras.find().sort({ nama: 1 });
     res.status(200).json(data);
@@ -67,9 +62,6 @@ app.post('/ras', asyncHandler(async (req, res) => {
     res.status(201).json({ status: 'success', message: 'Data ras berhasil ditambahkan', data: baru });
 }));
 
-// ---------------- Ternak (model utama) ----------------
-
-// GET /ternak?status=sehat&sort=beratKG&fields=nama,beratKG&page=1&limit=10
 app.get('/ternak', asyncHandler(async (req, res) => {
     const { status, ras, minBerat, maxBerat, sort, fields, page = 1, limit = 10 } = req.query;
 

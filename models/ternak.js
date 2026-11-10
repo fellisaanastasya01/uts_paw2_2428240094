@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-// Sub-dokumen yang di-embed ke dalam dokumen Ternak (embedding)
 const kandangSchema = new mongoose.Schema(
     {
         kode: { type: String, required: [true, 'kandang.kode wajib diisi'], trim: true },
@@ -33,7 +32,6 @@ const ternakSchema = new mongoose.Schema(
             default: 'sehat'
         },
         kandang: { type: kandangSchema, required: [true, 'kandang wajib diisi'] },
-        // Referencing: rujukan ke collection ras
         ras: { type: mongoose.Schema.Types.ObjectId, ref: 'Ras', required: [true, 'ras wajib diisi'] }
     },
     { timestamps: true, versionKey: false }

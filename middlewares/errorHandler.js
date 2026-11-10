@@ -1,6 +1,3 @@
-// middlewares/errorHandler.js
-// Error handler terpusat + 404 untuk rute tidak ditemukan.
-
 function errorHandler(err, req, res, next) {
   console.error("[ERROR]", err.message);
   const status = err.status || 500;

@@ -1,4 +1,3 @@
-// Seed data uji: 3 ras + 5 ternak (NIM 2428240094 dipakai pada nilai unik kodeTernak)
 const mongoose = require('mongoose');
 const { connectDB } = require('../db');
 const Ras = require('../models/ras');
