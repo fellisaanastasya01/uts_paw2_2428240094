@@ -1,5 +1,3 @@
-// models/rasModels.js
-// Model pendukung (referencing): daftar ras ternak.
 const mongoose = require('mongoose');
 
 const rasSchema = new mongoose.Schema(

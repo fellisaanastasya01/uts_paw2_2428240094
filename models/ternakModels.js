@@ -1,5 +1,3 @@
-// models/ternakModels.js
-// Model utama: Ternak. kandang di-embed, ras direferensikan.
 const mongoose = require('mongoose');
 
 const kandangSchema = new mongoose.Schema(

@@ -1,4 +1,3 @@
-// controllers/ternakControllers.js
 const mongoose = require('mongoose');
 const Ternak = require('../models/ternakModels');
 const Ras = require('../models/rasModels');
@@ -6,7 +5,6 @@ const { asyncHandler } = require('../middlewares/errorHandler');
 
 const idValid = (id) => mongoose.isValidObjectId(id);
 
-// GET /ternak?status=sehat&sort=beratKG&fields=nama,beratKG&page=1&limit=10
 const kirimDaftar = asyncHandler(async (req, res) => {
     const { status, ras, minBerat, maxBerat, sort, fields, page = 1, limit = 10 } = req.query;
 
@@ -23,7 +21,6 @@ const kirimDaftar = asyncHandler(async (req, res) => {
         filter.ras = { $in: daftarRas.map((r) => r._id) };
     }
 
-    // sort=beratKG (menaik), sort=-beratKG (menurun), sort=beratKG,-nama
     const urut = sort
         ? Object.fromEntries(
               sort.split(',').map((k) => {
@@ -46,7 +43,6 @@ const kirimDaftar = asyncHandler(async (req, res) => {
     res.status(200).json(data);
 });
 
-// GET /ternak/:id -> satu dokumen, field ras ter-populate (nama & asalDaerah)
 const kirimSatu = asyncHandler(async (req, res) => {
     if (!idValid(req.params.id)) {
         return res.status(400).json({ status: 'error', message: `id ${req.params.id} tidak valid`, data: null });
@@ -58,7 +54,6 @@ const kirimSatu = asyncHandler(async (req, res) => {
     res.status(200).json({ status: 'success', data });
 });
 
-// POST /ternak -> 201, dokumen memuat kandang (embed) dan ras (ref ter-populate)
 const kirimBuat = asyncHandler(async (req, res) => {
     const { kodeTernak, nama, beratKG, status, kandang, ras } = req.body;
 
@@ -86,7 +81,6 @@ const kirimBuat = asyncHandler(async (req, res) => {
     res.status(201).json({ status: 'success', message: 'Data ternak berhasil ditambahkan', data: terisi });
 });
 
-// PUT /ternak/:id -> ubah seluruh field
 const kirimPerbarui = asyncHandler(async (req, res) => {
     if (!idValid(req.params.id)) {
         return res.status(400).json({ status: 'error', message: `id ${req.params.id} tidak valid`, data: null });
@@ -102,7 +96,6 @@ const kirimPerbarui = asyncHandler(async (req, res) => {
     res.status(200).json({ status: 'success', message: 'Data berhasil diubah', data });
 });
 
-// DELETE /ternak/:id
 const kirimHapus = asyncHandler(async (req, res) => {
     if (!idValid(req.params.id)) {
         return res.status(400).json({ status: 'error', message: `id ${req.params.id} tidak valid`, data: null });
