@@ -18,4 +18,3 @@ Thumbs.db
 # toolchain lokal (MongoDB portable, cache, dsb)
 .tools/
 .omp/
-.postman/

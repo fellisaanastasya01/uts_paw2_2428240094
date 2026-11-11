@@ -1,0 +1,10 @@
+$kind: http-request
+name: 'delete ternak :id'
+method: DELETE
+url: '{{base_url}}/ternak/:id'
+order: 5000
+description: |
+  Hapus ternak. 200 sukses, 404 bila id tidak ada.
+pathVariables:
+  - key: id
+    value: '{{hapus_id}}'

@@ -1,0 +1,32 @@
+$kind: http-request
+method: POST
+url: '{{base_url}}/ternak'
+order: 3000
+description: |
+  Tambah ternak. 201 dengan kandang (embed) dan ras (ref ter-populate); 400 bila field wajib kosong atau beratKG < 1; 409 bila kodeTernak duplikat.
+headers:
+  - key: Content-Type
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "kodeTernak": "TRK-2428240094-{{$timestamp}}",
+      "nama": "Sapi Perah Fani",
+      "beratKG": 130,
+      "status": "sehat",
+      "kandang": {
+        "kode": "K-04",
+        "lokasi": "Blok D Palembang"
+      },
+      "ras": "{{ras_id}}"
+    }
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      const body = pm.response.json();
+      if (pm.response.code === 201) {
+          pm.environment.set('hapus_id', body.data._id);
+          console.log('[OK] id ternak baru:', body.data._id);
+      }

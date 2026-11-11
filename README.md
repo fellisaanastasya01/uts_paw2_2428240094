@@ -56,3 +56,28 @@ middlewares/errorHandler.js # asyncHandler, error handler terpusat, 404
 data/seed.js                # data uji (NIM pada kodeTernak)
 data/info.json              # metadata API untuk GET /
 ```
+
+## Postman (Local Mode)
+
+Project ini menyertakan koleksi Postman format v3 (git-native):
+
+```
+.postman/resources.yaml              # manifest workspace (local-only)
+postman/collections/UTS PAW2 - Peternakan/
+  info.request.yaml                  # GET /
+  ras/    get all ras, get ras by :id, create ras
+  ternak/ get all ternak, get ternak by :id, create ternak, update ternak, delete ternak
+postman/environments/lokal.environment.yaml
+postman/globals/workspace.globals.yaml
+```
+
+`ras_id`, `ternak_id`, `kode_ternak`, dan `hapus_id` diisi otomatis oleh test-script
+saat koleksi dijalankan, jadi tidak perlu hardcode ObjectId:
+
+```bash
+postman workspace lint
+postman collection run "postman/collections/UTS PAW2 - Peternakan" \
+  -e postman/environments/lokal.environment.yaml
+```
+
+Hasil: 9 request, 0 gagal (200/201 sesuai endpoint).

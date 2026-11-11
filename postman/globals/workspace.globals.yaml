@@ -1,0 +1,14 @@
+name: Globals
+values:
+  - key: nim
+    value: '2428240094'
+    enabled: true
+    type: default
+  - key: topik
+    value: '26'
+    enabled: true
+    type: default
+  - key: judul_topik
+    value: 'Peternakan'
+    enabled: true
+    type: default

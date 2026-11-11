@@ -1,0 +1,10 @@
+$kind: http-request
+name: 'get ras by :id'
+method: GET
+url: '{{base_url}}/ras/:id'
+order: 2000
+description: |
+  Satu ras berdasarkan ObjectId. 404 bila tidak ada, 400 bila id tidak valid.
+pathVariables:
+  - key: id
+    value: '{{ras_id}}'

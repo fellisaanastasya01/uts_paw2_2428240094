@@ -1,0 +1,23 @@
+$kind: http-request
+method: GET
+url: '{{base_url}}/ternak?status=sehat&sort=beratKG'
+order: 1000
+description: |
+  Daftar ternak. Filter status/ras/minBerat/maxBerat, sort, fields, page, limit. Respons array.
+queryParams:
+  - key: status
+    value: 'sehat'
+    description: 'Filter status: sehat / dirawat / sakit'
+  - key: sort
+    value: 'beratKG'
+    description: 'Urut menaik; pakai -beratKG untuk menurun'
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      const data = pm.response.json();
+      if (Array.isArray(data) && data.length) {
+          pm.environment.set('ternak_id', data[0]._id);
+          pm.environment.set('kode_ternak', data[0].kodeTernak);
+          console.log('[OK] ternak_id =', data[0]._id, '| kode =', data[0].kodeTernak);
+      }

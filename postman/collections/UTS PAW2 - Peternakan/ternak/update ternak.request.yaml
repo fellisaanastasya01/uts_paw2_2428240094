@@ -1,0 +1,27 @@
+$kind: http-request
+name: 'update ternak :id'
+method: PUT
+url: '{{base_url}}/ternak/:id'
+order: 4000
+description: |
+  Ubah seluruh field ternak. 200 sukses, 404 bila id tidak ada.
+pathVariables:
+  - key: id
+    value: '{{ternak_id}}'
+headers:
+  - key: Content-Type
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "kodeTernak": "{{kode_ternak}}",
+      "nama": "Sapi Perah Andini",
+      "beratKG": 125,
+      "status": "dirawat",
+      "kandang": {
+        "kode": "K-01",
+        "lokasi": "Blok A Palembang"
+      },
+      "ras": "{{ras_id}}"
+    }

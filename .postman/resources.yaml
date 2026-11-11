@@ -1,0 +1,8 @@
+# .postman/resources.yaml
+# Manifest Local Mode Postman (tanpa cloud workspace).
+# Dipakai `postman workspace prepare` / `postman workspace push` untuk
+# memetakan folder lokal ke elemen Postman Cloud.
+workspace:
+  id: '3a000a4f-3698-4a63-bcaa-6063161cedd6'
+cloudResources: {}
+localResources: {}

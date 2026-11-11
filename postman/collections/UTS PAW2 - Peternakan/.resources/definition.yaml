@@ -1,0 +1,10 @@
+$kind: collection
+name: UTS PAW2 - Peternakan
+description: |
+  RESTful API UTS PAW II - Topik 26 Peternakan (SI5B, NIM 2428240094).
+  Model utama Ternak (/ternak) dengan kandang di-embed dan ras direferensikan.
+  Model pendukung Ras (/ras).
+variables:
+  - key: base_url
+    value: 'http://localhost:3000'
+    description: Alamat server lokal (npm start).
