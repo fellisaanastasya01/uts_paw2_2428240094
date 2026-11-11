@@ -13,7 +13,7 @@ npm install
 cp .env.example .env          # sesuaikan bila perlu
 # pastikan MongoDB lokal sudah berjalan di 127.0.0.1:27017
 npm run seed                  # mengisi 3 ras + 5 ternak
-npm start                     # http://localhost:3000
+npm start                     # http://localhost:3001
 ```
 
 ## Daftar endpoint
